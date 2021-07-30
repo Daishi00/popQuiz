@@ -1,0 +1,44 @@
+[
+  {
+    "id": "pl",
+    "name": "Poland",
+    "population": 3800000
+  },
+  {
+    "id": "de",
+    "name": "Germany",
+
+    "population": 4800000
+  },
+  {
+    "id": "dk",
+    "name": "Denmark",
+    "population": 2800000
+  },
+  {
+    "id": "sk",
+    "name": "Slovakia",
+    "population": 1800000
+  },
+  {
+    "id": "gb",
+    "name": "England",
+    "population": 7800000
+  },
+  {
+    "id": "fr",
+    "name": "France",
+
+    "population": 6800000
+  },
+  {
+    "id": "ru",
+    "name": "Russia",
+    "population": 12800000
+  },
+  {
+    "id": "cz",
+    "name": "Czech Republic",
+    "population": 2400000
+  }
+]

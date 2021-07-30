@@ -1,0 +1,20 @@
+.country__container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  .country__name {
+    font-size: 2rem;
+  }
+
+  h2 {
+    margin-top: 10rem;
+  }
+
+  .country__population {
+    margin-top: 2rem;
+    font-size: 3rem;
+  }
+}

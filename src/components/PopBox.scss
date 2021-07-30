@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+
+  .line {
+    height: 100%;
+    width: 0.3rem;
+    background-color: #88bbe4;
+  }
+}

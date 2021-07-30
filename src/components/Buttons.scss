@@ -1,0 +1,31 @@
+.button__wrapper {
+  width: 300px;
+  height: 100px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+
+  button {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 3rem;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    i {
+      margin: 0;
+      color: #ffffff;
+    }
+  }
+
+  .button--lower {
+    background-color: #b90f0b;
+  }
+
+  .button--higher {
+    background-color: #33b864;
+  }
+}
