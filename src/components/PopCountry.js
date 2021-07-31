@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Countries from "../api/data.json";
 import CountUp from "react-countup";
-
 import "./PopCountry.scss";
 
 const PopCountry = (props) => {

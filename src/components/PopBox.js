@@ -1,13 +1,57 @@
 import React, { useState, useEffect } from "react";
 import PopCountry from "./PopCountry";
 import CountryData from "../api/data.json";
-import Buttons from "./Buttons";
+import { AnimatePresence, motion } from "framer-motion";
+
+import Answer from "./Answer";
 import "./PopBox.scss";
-import "./Buttons.scss";
+
+const containerVariants = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+    transition: { duration: 1.5, delay: 1.5, when: "beforeChildren" },
+  },
+  exit: {
+    x: "-100vw",
+    transition: {
+      ease: "easeInOut",
+    },
+  },
+};
+
+const lineVariants = {
+  hidden: {
+    y: "-100vh",
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 1.5, delay: 2 },
+  },
+};
+
+const scoreVariants = {
+  hidden: {
+    x: "100vw",
+  },
+  visible: {
+    x: 0,
+    transition: {
+      delay: 1,
+      duration: 1.5,
+    },
+  },
+};
+
 const PopBox = (props) => {
   const [countryData, setCountryData] = useState(CountryData);
   const [country1, setCountry1] = useState("");
   const [country2, setCountry2] = useState("");
+  const [score, setScore] = useState(0);
 
   const randomCountry = () => {
     console.log("random");
@@ -24,8 +68,6 @@ const PopBox = (props) => {
 
   let { first, second } = randomCountry();
 
-  const [score, setScore] = useState(0);
-
   useEffect(() => {
     setCountry1(first);
   }, []);
@@ -41,10 +83,10 @@ const PopBox = (props) => {
       setCountryData(
         countryData.filter((item) => item.name !== `${country2.name}`)
       );
-      console.log(countryData);
     } else {
       alert("You lost");
       setScore(0);
+      setCountryData(CountryData);
     }
   };
   const checkAnswerHigher = () => {
@@ -54,32 +96,53 @@ const PopBox = (props) => {
       setCountryData(
         countryData.filter((item) => item.name !== `${country2.name}`)
       );
-      console.log(countryData);
     } else {
       alert("You lost");
 
       setScore(0);
+      setCountryData(CountryData);
     }
   };
 
   return (
-    <div className="container">
-      <PopCountry
-        id={country1.id}
-        name={country1.name}
-        population={country1.population}
-      />
-      <div className="line"></div>
-      <PopCountry id={country2.id} name={country2.name} population="???" />
-      <div className="button__wrapper">
-        <button className="button--lower" onClick={() => checkAnswerLower()}>
-          <i className="angle down icon large"></i>
-        </button>
-        <button className="button--higher" onClick={() => checkAnswerHigher()}>
-          <i className="angle up icon large"></i>
-        </button>
+    <motion.div
+      className="container"
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+    >
+      <div className="country">
+        <PopCountry
+          id={country1.id}
+          name={country1.name}
+          population={country1.population}
+        />
       </div>
-    </div>
+      <motion.div
+        className="line"
+        variants={lineVariants}
+        initial="hidden"
+        animate="visible"
+      ></motion.div>
+      <div className="country">
+        <PopCountry id={country2.id} name={country2.name} population="???" />
+      </div>
+
+      <Answer
+        country1={country1.name}
+        country2={country2.name}
+        checkAnswerHigher={checkAnswerHigher}
+        checkAnswerLower={checkAnswerLower}
+      />
+      <motion.div
+        className="score__wrapper"
+        variants={scoreVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        <p className="score__text">Score: {score}</p>
+      </motion.div>
+    </motion.div>
   );
 };
 
