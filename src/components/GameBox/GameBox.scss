@@ -18,6 +18,14 @@
     width: 0.6rem;
     background-color: #242582;
   }
+  .score {
+    right: 0;
+    border-bottom-left-radius: 2rem;
+  }
+  .highscore {
+    left: 0;
+    border-bottom-right-radius: 2rem;
+  }
 
   .score__wrapper {
     width: 10rem;
@@ -37,13 +45,5 @@
       text-align: center;
       display: inline-block;
     }
-  }
-  .score {
-    right: 0;
-    border-bottom-left-radius: 2rem;
-  }
-  .highscore {
-    left: 0;
-    border-bottom-right-radius: 2rem;
   }
 }

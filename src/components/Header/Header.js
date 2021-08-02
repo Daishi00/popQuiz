@@ -4,7 +4,7 @@ import "./Header.scss";
 const Header = () => {
   return (
     <header>
-      <div className="score">PopQuiz</div>
+      <div className="name">PopQuiz</div>
     </header>
   );
 };

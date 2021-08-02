@@ -16,26 +16,28 @@
     p {
       text-align: center;
       letter-spacing: 0.05rem;
-      font-size: 1.8rem;
+      font-size: 1.5rem;
       color: #ffffff;
 
       .answer__text--red {
         font-weight: bold;
+        font-size: 1.8rem;
         color: #b90f0b;
       }
       .answer__text--green {
         font-weight: bold;
+        font-size: 1.8rem;
 
         color: #33b864;
       }
     }
   }
   .button__wrapper {
+    width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
     flex-direction: row;
-    width: 100%;
 
     .button__answer {
       width: 4rem;

@@ -1,75 +1,71 @@
 import React, { useState, useEffect, useRef } from "react";
-import PopCountry from "./PopCountry";
-import CountryData from "../api/data.json";
-import {
-  motion,
-  AnimatePresence,
-  useAnimation,
-  useTransform
-} from "framer-motion";
-import Start from "./Start";
-import Answer from "./Answer";
-import "./PopBox.scss";
+import PopCountry from "../Country/Country";
+import CountryData from "../../api/data.json";
+import { motion, AnimatePresence, useAnimation } from "framer-motion";
+import Start from "../Start/Start";
+import Answer from "../Answer/Answer";
+import "./GameBox.scss";
 
 const containerVariants = {
   hidden: {
-    opacity: 0
+    opacity: 0,
   },
   visible: {
     opacity: 1,
-    transition: { duration: 1.5, delay: 0.5, when: "beforeChildren" }
+    transition: { duration: 1.5, delay: 0.5, when: "beforeChildren" },
   },
   exit: {
     x: "-100vw",
     transition: {
-      ease: "easeInOut"
-    }
-  }
+      ease: "easeInOut",
+    },
+  },
 };
 
 const lineVariants = {
   hidden: {
     y: "-100vh",
-    opacity: 0
+    opacity: 0,
   },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 1, delay: 1.5 }
-  }
+    transition: { duration: 1, delay: 1.5 },
+  },
 };
 
 const scoreVariants = {
   hidden: {
-    x: "100vw"
+    x: "100vw",
   },
   visible: {
     x: 0,
     transition: {
       delay: 1,
-      duration: 1.5
-    }
-  }
+      duration: 1.5,
+    },
+  },
 };
 
 const highscoreVariants = {
   hidden: {
-    x: "-100vw"
+    x: "-100vw",
   },
   visible: {
     x: 0,
     transition: {
       delay: 1,
-      duration: 1.5
-    }
-  }
+      duration: 1.5,
+    },
+  },
 };
 
-const PopBox = () => {
+const GameBox = () => {
   const [countryData, setCountryData] = useState(CountryData);
   const [country1, setCountry1] = useState("");
   const [country2, setCountry2] = useState("");
   const [score, setScore] = useState(0);
+  const [isPopulation, setIsPopulation] = useState("");
   const [lost, setLost] = useState(false);
 
   const randomCountry = () => {
@@ -83,75 +79,93 @@ const PopBox = () => {
     } while (randomCountry1 === randomCountry2);
     return {
       first: randomCountry1,
-      second: randomCountry2
+      second: randomCountry2,
     };
   };
 
   let { first, second } = randomCountry();
-  const didMountRef2 = useRef(false);
-  const controls = useAnimation();
+  const didMountRef1 = useRef(false);
+  const controls1 = useAnimation();
+  const controls2 = useAnimation();
+  const controls3 = useAnimation();
 
   useEffect(() => {
-    if (didMountRef2.current) {
-      controls.start({
-        x: "-50vw",
-        transition: { duration: 0.8 }
+    if (didMountRef1.current) {
+      controls1.start({
+        opacity: [0, 1],
+        transition: { duration: 1.5 },
       });
-      setCountry1(first);
     } else {
-      didMountRef2.current = true;
+      didMountRef1.current = true;
       setCountry1(first);
-      console.log("hoho");
     }
-  }, []);
-
-  const didMountRef = useRef(false);
+  }, [score]);
 
   useEffect(() => {
-    if (didMountRef.current) {
-      controls.start({
-        x: "-50vw",
-        transition: { duration: 0.8 }
-      });
-      setCountry2(second);
-    } else {
-      didMountRef.current = true;
-      setCountry2(second);
-      console.log("hoho");
-    }
+    setCountry2(second);
   }, [score]);
 
   const getScore = localStorage.getItem("highscore");
 
   const checkAnswerLower = () => {
-    if (country1.population > country2.population) {
-      setScore(score + 1);
-      setCountry1(country2);
-      setCountryData(
-        countryData.filter(item => item.name !== `${country2.name}`)
-      );
-    } else {
-      if (score > getScore) {
-        localStorage.setItem("highscore", score);
+    setIsPopulation(country2.population);
+    setTimeout(() => {
+      controls2.start({
+        opacity: [1, 0],
+        transition: { duration: 0.5 },
+      });
+    }, 2000);
+    setTimeout(() => {
+      if (country1.population > country2.population) {
+        setScore(score + 1);
+        setCountry1(country2);
+        setCountryData(
+          countryData.filter((item) => item.name !== `${country2.name}`)
+        );
+        setIsPopulation("");
+        controls2.start({
+          opacity: [0, 1],
+          background: ["#f5f5f5", "#33b864", "#f5f5f5"],
+          transition: { duration: 0.5 },
+        });
+      } else {
+        if (score > getScore) {
+          localStorage.setItem("highscore", score);
+        }
+        setCountryData(CountryData);
+        setLost(true);
       }
-      setCountryData(CountryData);
-      setLost(true);
-    }
+    }, 2500);
   };
   const checkAnswerHigher = () => {
-    if (country1.population < country2.population) {
-      setScore(score + 1);
-      setCountry1(country2);
-      setCountryData(
-        countryData.filter(item => item.name !== `${country2.name}`)
-      );
-    } else {
-      if (score > getScore) {
-        localStorage.setItem("highscore", score);
+    setIsPopulation(country2.population);
+    setTimeout(() => {
+      controls2.start({
+        opacity: [1, 0],
+        transition: { duration: 0.5 },
+      });
+    }, 2000);
+    setTimeout(() => {
+      if (country1.population < country2.population) {
+        setScore(score + 1);
+        setCountry1(country2);
+        setCountryData(
+          countryData.filter((item) => item.name !== `${country2.name}`)
+        );
+        setIsPopulation("");
+        controls2.start({
+          opacity: [0, 1],
+          background: ["#f5f5f5", "#33b864", "#f5f5f5"],
+          transition: { duration: 0.5 },
+        });
+      } else {
+        if (score > getScore) {
+          localStorage.setItem("highscore", score);
+        }
+        setCountryData(CountryData);
+        setLost(true);
       }
-      setCountryData(CountryData);
-      setLost(true);
-    }
+    }, 2500);
   };
 
   return (
@@ -170,25 +184,27 @@ const PopBox = () => {
             animate="visible"
             exit="exit"
           >
-            <div className="country">
+            <motion.div className="country" animate={controls1}>
               <PopCountry
                 id={country1.id}
                 name={country1.name}
                 population={country1.population}
               />
-            </div>
+            </motion.div>
             <motion.div
               className="line"
               variants={lineVariants}
               initial="hidden"
               animate="visible"
             />
-            <motion.div className="country" animate={controls}>
-              <PopCountry
-                id={country2.id}
-                name={country2.name}
-                population="???"
-              />
+            <motion.div className="country" animate={controls2}>
+              <motion.div animate={controls3}>
+                <PopCountry
+                  id={country2.id}
+                  name={country2.name}
+                  population={isPopulation}
+                />
+              </motion.div>
             </motion.div>
 
             <Answer
@@ -222,4 +238,4 @@ const PopBox = () => {
   );
 };
 
-export default PopBox;
+export default GameBox;

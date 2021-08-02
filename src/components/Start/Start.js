@@ -1,24 +1,24 @@
 import React, { useState } from "react";
-import PopBox from "./PopBox";
+import GameBox from "../GameBox/GameBox";
 import { AnimatePresence, motion } from "framer-motion";
 
 import "./Start.scss";
 
 const containerVariants = {
   hidden: {
-    opacity: 0
+    opacity: 0,
   },
   visible: {
     opacity: 1,
-    transition: { duration: 1.5 }
+    transition: { duration: 1.5 },
   },
   exit: {
     x: "-100vw",
     transition: {
       ease: "easeInOut",
-      duration: 1
-    }
-  }
+      duration: 1,
+    },
+  },
 };
 
 const buttonVariants = {
@@ -27,12 +27,12 @@ const buttonVariants = {
 
     transition: {
       duration: 0.5,
-      yoyo: Infinity
-    }
-  }
+      yoyo: Infinity,
+    },
+  },
 };
 
-const Start = props => {
+const Start = (props) => {
   const [visibility, setVisibility] = useState(false);
 
   return (
@@ -63,7 +63,7 @@ const Start = props => {
         )}
       </AnimatePresence>
 
-      {visibility && <PopBox />}
+      {visibility && <GameBox />}
     </div>
   );
 };
