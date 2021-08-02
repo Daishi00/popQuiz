@@ -15,20 +15,19 @@
   }
   .line {
     height: 100%;
-    width: 0.4rem;
+    width: 0.6rem;
     background-color: #242582;
   }
+
   .score__wrapper {
     width: 10rem;
     height: 3rem;
     background-color: #242582;
-    position: absolute;
-    border-bottom-left-radius: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    top: 0rem;
-    right: 0rem;
+    position: absolute;
+    top: 0;
 
     .score__text {
       font-size: 1.5rem;
@@ -38,5 +37,13 @@
       text-align: center;
       display: inline-block;
     }
+  }
+  .score {
+    right: 0;
+    border-bottom-left-radius: 2rem;
+  }
+  .highscore {
+    left: 0;
+    border-bottom-right-radius: 2rem;
   }
 }

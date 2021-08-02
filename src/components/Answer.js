@@ -5,31 +5,31 @@ import "./Answer.scss";
 
 const containerVariants = {
   hidden: {
-    opacity: 0,
+    opacity: 0
   },
   visible: {
     opacity: 1,
     transition: {
-      delay: 1.5,
-      duration: 1,
-    },
-  },
+      delay: 1,
+      duration: 1
+    }
+  }
 };
 
 const buttonVariants = {
   initial: {
-    opacity: 0.85,
+    opacity: 0.9
   },
   hover: {
     scale: 1.1,
     opacity: 1,
     transition: {
-      duration: 0.1,
-    },
-  },
+      duration: 0.1
+    }
+  }
 };
 
-const Answer = (props) => {
+const Answer = props => {
   return (
     <motion.div
       className="answer__container"

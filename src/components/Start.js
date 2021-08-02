@@ -6,19 +6,19 @@ import "./Start.scss";
 
 const containerVariants = {
   hidden: {
-    opacity: 0,
+    opacity: 0
   },
   visible: {
     opacity: 1,
-    transition: { duration: 1.5 },
+    transition: { duration: 1.5 }
   },
   exit: {
     x: "-100vw",
     transition: {
       ease: "easeInOut",
-      duration: 1,
-    },
-  },
+      duration: 1
+    }
+  }
 };
 
 const buttonVariants = {
@@ -27,12 +27,12 @@ const buttonVariants = {
 
     transition: {
       duration: 0.5,
-      yoyo: Infinity,
-    },
-  },
+      yoyo: Infinity
+    }
+  }
 };
 
-const Start = () => {
+const Start = props => {
   const [visibility, setVisibility] = useState(false);
 
   return (
@@ -47,9 +47,7 @@ const Start = () => {
             exit="exit"
           >
             <div className="start__text__container">
-              <p className="start__text">
-                Which country is larger by population?
-              </p>
+              <p className="start__text">{props.startText}</p>
             </div>
             <div className="button__start__container">
               <motion.button
@@ -58,7 +56,7 @@ const Start = () => {
                 variants={buttonVariants}
                 whileHover="hover"
               >
-                START THE GAME
+                {props.buttonText}
               </motion.button>
             </div>
           </motion.div>

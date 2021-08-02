@@ -3,7 +3,7 @@ import Countries from "../api/data.json";
 import CountUp from "react-countup";
 import "./PopCountry.scss";
 
-const PopCountry = (props) => {
+const PopCountry = props => {
   return (
     <div className="country__container">
       <div className="country__flag">
@@ -21,7 +21,7 @@ const PopCountry = (props) => {
           <CountUp
             start={0}
             end={props.population}
-            delay={0}
+            preserveValue={true}
             duration={2}
             useEasing={true}
           >
