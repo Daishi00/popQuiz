@@ -1,9 +1,11 @@
+@use '../../assets/colors' as c;
+
 .answer__container {
   width: 22rem;
   height: 15rem;
   border-radius: 3rem;
   display: flex;
-  background-color: #242582;
+  background-color: c.$blue;
   position: absolute;
   justify-content: space-around;
   align-items: center;
@@ -13,33 +15,35 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
     p {
       text-align: center;
-      letter-spacing: 0.05rem;
-      font-size: 1.5rem;
-      color: #ffffff;
+      font-size: 1.6rem;
+      color: c.$white;
 
-      .answer__text--red {
+      .answer__span {
         font-weight: bold;
-        font-size: 1.8rem;
-        color: #b90f0b;
+        font-size: 2.2rem;
       }
-      .answer__text--green {
-        font-weight: bold;
-        font-size: 1.8rem;
 
-        color: #33b864;
+      .answer__span--red {
+        color: c.$red;
+      }
+
+      .answer__span--green {
+        color: c.$green;
       }
     }
   }
-  .button__wrapper {
+
+  .answer__btn__container {
     width: 100%;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     flex-direction: row;
 
-    .button__answer {
+    .answer__btn {
       width: 4rem;
       height: 4rem;
       border-radius: 3rem;
@@ -54,16 +58,17 @@
         color: #ffffff;
       }
     }
+
     :hover {
       cursor: pointer;
     }
 
-    .button__answer--lower {
-      background-color: #b90f0b;
+    .answer__btn--lower {
+      background-color: c.$red;
     }
 
-    .button__answer--higher {
-      background-color: #33b864;
+    .answer__btn--higher {
+      background-color: c.$green;
     }
   }
 }

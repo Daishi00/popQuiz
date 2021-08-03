@@ -1,3 +1,5 @@
+@use '../../assets/colors' as c;
+
 .container {
   display: flex;
   flex: 1;
@@ -13,15 +15,18 @@
     align-items: center;
     display: flex;
   }
+
   .line {
     height: 100%;
     width: 0.6rem;
-    background-color: #242582;
+    background-color: c.$blue;
   }
+
   .score {
     right: 0;
     border-bottom-left-radius: 2rem;
   }
+
   .highscore {
     left: 0;
     border-bottom-right-radius: 2rem;
@@ -30,7 +35,7 @@
   .score__wrapper {
     width: 10rem;
     height: 3rem;
-    background-color: #242582;
+    background-color: c.$blue;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,7 +44,7 @@
 
     .score__text {
       font-size: 1.5rem;
-      color: #ffffff;
+      color: c.$white;
       width: 100%;
       height: 100%;
       text-align: center;
