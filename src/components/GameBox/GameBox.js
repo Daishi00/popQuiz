@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import PopCountry from "../Country/Country";
 import CountryData from "../../api/data.json";
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
@@ -8,75 +8,75 @@ import "./GameBox.scss";
 
 const containerVariants = {
   hidden: {
-    opacity: 0
+    opacity: 0,
   },
   visible: {
     opacity: 1,
-    transition: { duration: 1.5, delay: 0.5, when: "beforeChildren" }
+    transition: { duration: 1.5, delay: 0.5, when: "beforeChildren" },
   },
   exit: {
     x: "-100vw",
     transition: {
-      ease: "easeInOut"
-    }
-  }
+      ease: "easeInOut",
+    },
+  },
 };
 
 const lineVariants = {
   hidden: {
     y: "-100vh",
-    opacity: 0
+    opacity: 0,
   },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 1, delay: 1.5 }
-  }
+    transition: { duration: 1, delay: 1.5 },
+  },
 };
 
 const scoreVariants = {
   hidden: {
-    x: "100vw"
+    x: "100vw",
   },
   visible: {
     x: 0,
     transition: {
       delay: 1,
-      duration: 1.5
-    }
-  }
+      duration: 1.5,
+    },
+  },
 };
 
 const highscoreVariants = {
   hidden: {
-    x: "-100vw"
+    x: "-100vw",
   },
   visible: {
     x: 0,
     transition: {
       delay: 1,
-      duration: 1.5
-    }
-  }
+      duration: 1.5,
+    },
+  },
 };
 
 const answerVariants = {
   right: {
     background: ["#f5f5f5", "#33b864", "#f5f5f5"],
-    transition: { duration: 1, delay: 2.5 }
+    transition: { duration: 1, delay: 2.5 },
   },
   wrong: {
     background: ["#f5f5f5", "#b90f0b", "#f5f5f5"],
-    transition: { duration: 1, delay: 2.5 }
+    transition: { duration: 1, delay: 2.5 },
   },
   hidden: {
     opacity: [1, 0],
-    transition: { duration: 0.5, delay: 3.5 }
+    transition: { duration: 0.5, delay: 3.5 },
   },
   appear: {
     opacity: [0, 1],
-    transition: { duration: 0.5 }
-  }
+    transition: { duration: 0.5 },
+  },
 };
 
 const GameBox = () => {
@@ -98,17 +98,22 @@ const GameBox = () => {
     } while (randomCountry1 === randomCountry2);
     return {
       first: randomCountry1,
-      second: randomCountry2
+      second: randomCountry2,
     };
   };
 
   let { first, second } = randomCountry();
   const controls1 = useAnimation();
   const controls2 = useAnimation();
+  const didMountRef1 = useRef(false);
 
   useEffect(() => {
-    controls1.start("appear");
-    setCountry1(first);
+    if (didMountRef1.current) {
+      controls1.start("appear");
+    } else {
+      didMountRef1.current = true;
+      setCountry1(first);
+    }
   }, [score]);
 
   useEffect(() => {
@@ -121,6 +126,7 @@ const GameBox = () => {
     setIsPopulation(country2.population);
     controls1.start("hidden");
     controls2.start("hidden");
+
     if (country1.population > country2.population) {
       controls2.start("right");
     } else {
@@ -132,9 +138,11 @@ const GameBox = () => {
         setScore(score + 1);
         setCountry1(country2);
         setCountryData(
-          countryData.filter(item => item.name !== `${country2.name}`)
+          countryData.filter((item) => item.name !== `${country2.name}`)
         );
         setIsPopulation("");
+        controls1.start("appear2");
+
         controls2.start("appear");
       } else {
         if (score > getScore) {
@@ -159,7 +167,7 @@ const GameBox = () => {
         setScore(score + 1);
         setCountry1(country2);
         setCountryData(
-          countryData.filter(item => item.name !== `${country2.name}`)
+          countryData.filter((item) => item.name !== `${country2.name}`)
         );
         setIsPopulation("");
         controls2.start("appear");
