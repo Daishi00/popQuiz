@@ -2,7 +2,7 @@ import React from "react";
 import CountUp from "react-countup";
 import "./Country.scss";
 
-const Country = (props) => {
+const Country = props => {
   return (
     <div className="country__container">
       <div className="country__flag">
@@ -14,7 +14,13 @@ const Country = (props) => {
       <div className="country__name">{props.name}</div>
       <h2>POPULATION</h2>
       <div className="country__population">
-        <CountUp start={0} end={props.population} duration={1} useEasing={true}>
+        <CountUp
+          start={0}
+          end={props.population}
+          separator={","}
+          duration={2}
+          useEasing={true}
+        >
           {({ countUpRef }) => (
             <div>
               <span ref={countUpRef} />
