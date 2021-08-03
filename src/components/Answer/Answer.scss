@@ -1,7 +1,7 @@
 @use '../../assets/colors' as c;
 
 .answer__container {
-  width: 22rem;
+  width: 20%;
   height: 15rem;
   border-radius: 3rem;
   display: flex;
@@ -11,28 +11,29 @@
   align-items: center;
   flex-direction: column;
 
-  .answer__text {
+  .answer__text__container {
     display: flex;
+    width: 100%;
     justify-content: center;
     align-items: center;
+    margin: 0.5rem 0.5rem 0 0.5rem;
 
-    p {
+    .answer__text {
       text-align: center;
       font-size: 1.6rem;
       color: c.$white;
+    }
+    .answer__span {
+      font-weight: bold;
+      font-size: 120%;
+    }
 
-      .answer__span {
-        font-weight: bold;
-        font-size: 2.2rem;
-      }
+    .answer__span--red {
+      color: c.$red;
+    }
 
-      .answer__span--red {
-        color: c.$red;
-      }
-
-      .answer__span--green {
-        color: c.$green;
-      }
+    .answer__span--green {
+      color: c.$green;
     }
   }
 
@@ -44,8 +45,8 @@
     flex-direction: row;
 
     .answer__btn {
-      width: 4rem;
-      height: 4rem;
+      width: 3.5rem;
+      height: 3.5rem;
       border-radius: 3rem;
       padding: 0;
       display: flex;
@@ -69,6 +70,68 @@
 
     .answer__btn--higher {
       background-color: c.$green;
+    }
+  }
+}
+
+@media (max-width: 1100px) {
+  .answer__container {
+    .answer__text__container {
+      .answer__text {
+        font-size: 1.3rem;
+      }
+    }
+    .answer__btn__container {
+      .answer__btn {
+        width: 3rem;
+        height: 3rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .answer__container {
+    .answer__text__container {
+      .answer__text {
+        font-size: 1.1rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 650px) {
+  .answer__container {
+    height: 12rem;
+    width: 25%;
+    .answer__text__container {
+      .answer__text {
+        font-size: 0.9rem;
+      }
+    }
+    .answer__btn__container {
+      .answer__btn {
+        width: 2.5rem;
+        height: 2.5rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 450px) {
+  .answer__container {
+    height: 11rem;
+    width: 35%;
+    .answer__text__container {
+      .answer__text {
+        font-size: 0.9rem;
+      }
+    }
+    .answer__btn__container {
+      .answer__btn {
+        width: 2.2rem;
+        height: 2.2rem;
+      }
     }
   }
 }

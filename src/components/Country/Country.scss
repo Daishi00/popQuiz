@@ -1,5 +1,3 @@
-
-
 .country__container {
   width: 100%;
   display: flex;
@@ -18,5 +16,47 @@
   .country__population {
     margin-top: 1rem;
     font-size: 3rem;
+  }
+}
+
+@media (max-width: 650px) {
+  .country__container {
+    .country__name {
+      font-size: 1.5rem;
+    }
+
+    h2 {
+      margin-top: 10rem;
+      font-size: 90%;
+    }
+
+    .country__population {
+      margin-top: 1rem;
+      font-size: 2rem;
+    }
+  }
+}
+
+@media (max-width: 450px) {
+  .country__container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    .country__name {
+      font-size: 1rem;
+    }
+
+    h2 {
+      margin-top: 10rem;
+      font-size: 80%;
+    }
+
+    .country__population {
+      margin-top: 1rem;
+      font-size: 1.5rem;
+    }
   }
 }

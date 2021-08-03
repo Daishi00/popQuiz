@@ -39,8 +39,8 @@ const Answer = (props) => {
       initial="hidden"
       animate="visible"
     >
-      <div className="answer__text">
-        <p>
+      <div className="answer__text__container">
+        <p className="answer__text">
           Does {props.country2} have <br />
           <span className="answer__span--red answer__span">LOWER</span> or{" "}
           <span className="answer__span--green answer__span">HIGHER</span>{" "}
