@@ -1,48 +1,40 @@
 import React from "react";
 import { motion } from "framer-motion";
-import icon from "../../assets/right.svg";
+import icon from "../../assets/icon.svg";
 import "./Answer.scss";
 
 const containerVariants = {
   hidden: {
-    opacity: 0,
+    opacity: 0
   },
   visible: {
     opacity: 1,
     transition: {
       delay: 1,
-      duration: 1,
-    },
-  },
+      duration: 1
+    }
+  }
 };
 
 const buttonVariants = {
   initial: {
-    opacity: 0.9,
+    opacity: 1
   },
   hover: {
-    opacity: 1,
+    backgroundColor: "#33b864",
     transition: {
-      duration: 0.1,
-    },
+      duration: 0.1
+    }
   },
-};
-const iconVariants = {
-  initial: {
-    rotate: 180,
-  },
-  hover: {
-    scale: 1.1,
+  tap: {
+    scale: [1, 1.1, 1],
     transition: {
-      duration: 0.5,
-      yoyo: Infinity,
-    },
-  },
+      duration: 0.2
+    }
+  }
 };
 
-const Answer = (props) => {
-  // [disable, setDisable] = useState("");
-
+const Answer = props => {
   return (
     <motion.div
       className="answer__container"
@@ -51,37 +43,32 @@ const Answer = (props) => {
       animate="visible"
     >
       <div className="answer__text__container">
-        <p className="answer__text">Which has higher population?</p>
+        <p className="answer__text">Which country has larger population</p>
       </div>
       <div className="answer__btn__container">
         <motion.button
           className="answer__btn answer__btn--left"
           onClick={props.checkAnswerLower}
+          onMouseOver={props.highlightCountry1}
           variants={buttonVariants}
           initial="initial"
           whileHover="hover"
+          whileTap="tap"
+          disabled={props.disabled}
         >
-          <motion.img
-            src={icon}
-            className={"icon icon--left"}
-            initial={"initial"}
-            variants={iconVariants}
-            whileHover="hover"
-          ></motion.img>
+          <img src={icon} className={"icon icon--left"} />
         </motion.button>
         <motion.button
           className="answer__btn answer__btn--right"
           onClick={props.checkAnswerHigher}
+          onMouseOver={props.highlightCountry2}
           variants={buttonVariants}
           initial="initial"
           whileHover="hover"
+          whileTap="tap"
+          disabled={props.disabled}
         >
-          <motion.img
-            src={icon}
-            className={"icon icon--right"}
-            variants={iconVariants}
-            whileHover="hover"
-          ></motion.img>
+          <img src={icon} className={"icon icon--right"} />
         </motion.button>
       </div>
     </motion.div>

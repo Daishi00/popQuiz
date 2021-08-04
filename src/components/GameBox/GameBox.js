@@ -8,75 +8,80 @@ import "./GameBox.scss";
 
 const containerVariants = {
   hidden: {
-    opacity: 0,
+    opacity: 0
   },
   visible: {
     opacity: 1,
-    transition: { duration: 1.5, delay: 0.5, when: "beforeChildren" },
+    transition: { duration: 1.5, delay: 0.5, when: "beforeChildren" }
   },
   exit: {
     x: "-100vw",
     transition: {
-      ease: "easeInOut",
-    },
-  },
+      ease: "easeInOut"
+    }
+  }
 };
 
 const lineVariants = {
   hidden: {
     y: "-100vh",
-    opacity: 0,
+    opacity: 0
   },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 1, delay: 1.5 },
-  },
+    transition: { duration: 1, delay: 1.5 }
+  }
 };
 
 const scoreVariants = {
   hidden: {
-    x: "100vw",
+    x: "100vw"
   },
   visible: {
     x: 0,
     transition: {
       delay: 1,
-      duration: 1.5,
-    },
-  },
+      duration: 1.5
+    }
+  }
 };
 
 const highscoreVariants = {
   hidden: {
-    x: "-100vw",
+    x: "-100vw"
   },
   visible: {
     x: 0,
     transition: {
       delay: 1,
-      duration: 1.5,
-    },
-  },
+      duration: 1.5
+    }
+  }
 };
 
 const answerVariants = {
   right: {
     background: ["#f5f5f5", "#33b864", "#f5f5f5"],
-    transition: { duration: 1, delay: 2.5 },
+    transition: { duration: 1, delay: 2.5 }
   },
   wrong: {
     background: ["#f5f5f5", "#b90f0b", "#f5f5f5"],
-    transition: { duration: 1, delay: 2.5 },
+    transition: { duration: 1, delay: 2.5 }
   },
   hidden: {
     opacity: [1, 0],
-    transition: { duration: 0.5, delay: 3.5 },
+    transition: { duration: 0.5, delay: 3.5 }
   },
   appear: {
     opacity: [0, 1],
-    transition: { duration: 0.5 },
+    transition: { duration: 0.5 }
   },
+
+  highlight: {
+    background: ["#f5f5f5", "#b90f0b", "#f5f5f5"],
+    transition: { duration: 0.2 }
+  }
 };
 
 const GameBox = () => {
@@ -85,6 +90,7 @@ const GameBox = () => {
   const [country2, setCountry2] = useState("");
   const [score, setScore] = useState(0);
   const [isPopulation, setIsPopulation] = useState("");
+  const [disabled, setDisabled] = useState(false);
   const [lost, setLost] = useState(false);
 
   const randomCountry = () => {
@@ -98,7 +104,7 @@ const GameBox = () => {
     } while (randomCountry1 === randomCountry2);
     return {
       first: randomCountry1,
-      second: randomCountry2,
+      second: randomCountry2
     };
   };
 
@@ -123,6 +129,7 @@ const GameBox = () => {
   const getScore = localStorage.getItem("highscore");
 
   const checkAnswerLower = () => {
+    setDisabled(true);
     setIsPopulation(country2.population);
     controls1.start("hidden");
     controls2.start("hidden");
@@ -135,10 +142,11 @@ const GameBox = () => {
 
     setTimeout(() => {
       if (country1.population > country2.population) {
+        setDisabled(false);
         setScore(score + 1);
         setCountry1(country2);
         setCountryData(
-          countryData.filter((item) => item.name !== `${country2.name}`)
+          countryData.filter(item => item.name !== `${country2.name}`)
         );
         setIsPopulation("");
         controls1.start("appear2");
@@ -153,7 +161,9 @@ const GameBox = () => {
       }
     }, 4000);
   };
+
   const checkAnswerHigher = () => {
+    setDisabled(true);
     setIsPopulation(country2.population);
     controls1.start("hidden");
     controls2.start("hidden");
@@ -164,10 +174,11 @@ const GameBox = () => {
     }
     setTimeout(() => {
       if (country1.population < country2.population) {
+        setDisabled(false);
         setScore(score + 1);
         setCountry1(country2);
         setCountryData(
-          countryData.filter((item) => item.name !== `${country2.name}`)
+          countryData.filter(item => item.name !== `${country2.name}`)
         );
         setIsPopulation("");
         controls2.start("appear");
@@ -179,6 +190,14 @@ const GameBox = () => {
         setLost(true);
       }
     }, 4000);
+  };
+
+  const highlightCountry1 = () => {
+    controls1.start("highlight");
+  };
+
+  const highlightCountry2 = () => {
+    controls2.start("highlight");
   };
 
   return (
@@ -231,6 +250,9 @@ const GameBox = () => {
               country2={country2.name}
               checkAnswerHigher={checkAnswerHigher}
               checkAnswerLower={checkAnswerLower}
+              highlightCountry1={highlightCountry1}
+              highlightCountry2={highlightCountry2}
+              disabled={disabled}
             />
             <motion.div
               className="score__wrapper highscore"

@@ -11,7 +11,7 @@
   }
 
   h2 {
-    margin-top: 10rem;
+    margin-top: 20rem;
   }
 
   .country__population {
@@ -20,14 +20,14 @@
   }
 }
 
-@media (max-width: 650px) {
+@media (max-width: 850px) {
   .country__container {
     .country__name {
       font-size: 1.5rem;
     }
 
     h2 {
-      margin-top: 15rem;
+      margin-top: 20rem;
       font-size: 1.8rem;
     }
 
@@ -44,7 +44,6 @@
     }
 
     h2 {
-      margin-top: 17rem;
       font-size: 1.5rem;
     }
 
