@@ -3,7 +3,7 @@
 .answer__container {
   width: 20%;
   height: 15rem;
-  border-radius: 3rem;
+  border-radius: 4rem;
   display: flex;
   background-color: c.$blue;
   position: absolute;
@@ -16,7 +16,7 @@
     width: 100%;
     justify-content: center;
     align-items: center;
-    margin: 0.5rem 0.5rem 0 0.5rem;
+    padding: 0.5rem;
 
     .answer__text {
       text-align: center;
@@ -39,24 +39,25 @@
 
   .answer__btn__container {
     width: 100%;
+    height: 100%;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     flex-direction: row;
 
     .answer__btn {
-      width: 3.5rem;
-      height: 3.5rem;
-      border-radius: 3rem;
+      width: 100%;
+      height: 100%;
       padding: 0;
       display: flex;
       justify-content: center;
       align-items: center;
       border: none;
+      background-color: #429bb8;
 
-      i {
-        margin: 0;
-        color: #ffffff;
+      .icon {
+        width: 50%;
+        height: 50%;
       }
     }
 
@@ -64,12 +65,12 @@
       cursor: pointer;
     }
 
-    .answer__btn--lower {
-      background-color: c.$red;
+    .answer__btn--left {
+      border-radius: 3rem 0rem 0rem 3rem;
     }
 
-    .answer__btn--higher {
-      background-color: c.$green;
+    .answer__btn--right {
+      border-radius: 0rem 3rem 3rem 0rem;
     }
   }
 }
@@ -81,12 +82,6 @@
         font-size: 1.3rem;
       }
     }
-    .answer__btn__container {
-      .answer__btn {
-        width: 3rem;
-        height: 3rem;
-      }
-    }
   }
 }
 
@@ -94,7 +89,7 @@
   .answer__container {
     .answer__text__container {
       .answer__text {
-        font-size: 1.1rem;
+        font-size: 1.4rem;
       }
     }
   }
@@ -103,16 +98,10 @@
 @media (max-width: 650px) {
   .answer__container {
     height: 13rem;
-    width: 25%;
+    width: 40%;
     .answer__text__container {
       .answer__text {
-        font-size: 1.1rem;
-      }
-    }
-    .answer__btn__container {
-      .answer__btn {
-        width: 2.7rem;
-        height: 2.7rem;
+        font-size: 1.3rem;
       }
     }
   }
@@ -121,16 +110,9 @@
 @media (max-width: 450px) {
   .answer__container {
     height: 13rem;
-    width: 45%;
     .answer__text__container {
       .answer__text {
         font-size: 1.2rem;
-      }
-    }
-    .answer__btn__container {
-      .answer__btn {
-        width: 2.5rem;
-        height: 2.5rem;
       }
     }
   }

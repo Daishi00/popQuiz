@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-
+import icon from "../../assets/right.svg";
 import "./Answer.scss";
 
 const containerVariants = {
@@ -21,10 +21,21 @@ const buttonVariants = {
     opacity: 0.9,
   },
   hover: {
-    scale: 1.1,
     opacity: 1,
     transition: {
       duration: 0.1,
+    },
+  },
+};
+const iconVariants = {
+  initial: {
+    rotate: 180,
+  },
+  hover: {
+    scale: 1.1,
+    transition: {
+      duration: 0.5,
+      yoyo: Infinity,
     },
   },
 };
@@ -40,31 +51,37 @@ const Answer = (props) => {
       animate="visible"
     >
       <div className="answer__text__container">
-        <p className="answer__text">
-          Does {props.country2} have <br />
-          <span className="answer__span--red answer__span">LOWER</span> or{" "}
-          <span className="answer__span--green answer__span">HIGHER</span>{" "}
-          <br /> population than {props.country1}
-        </p>
+        <p className="answer__text">Which has higher population?</p>
       </div>
       <div className="answer__btn__container">
         <motion.button
-          className="answer__btn answer__btn--lower"
+          className="answer__btn answer__btn--left"
           onClick={props.checkAnswerLower}
           variants={buttonVariants}
           initial="initial"
           whileHover="hover"
         >
-          <i className="angle down icon large"></i>
+          <motion.img
+            src={icon}
+            className={"icon icon--left"}
+            initial={"initial"}
+            variants={iconVariants}
+            whileHover="hover"
+          ></motion.img>
         </motion.button>
         <motion.button
-          className="answer__btn answer__btn--higher"
+          className="answer__btn answer__btn--right"
           onClick={props.checkAnswerHigher}
           variants={buttonVariants}
           initial="initial"
           whileHover="hover"
         >
-          <i className="angle up icon large"></i>
+          <motion.img
+            src={icon}
+            className={"icon icon--right"}
+            variants={iconVariants}
+            whileHover="hover"
+          ></motion.img>
         </motion.button>
       </div>
     </motion.div>
