@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import icon from "../../assets/icon.svg";
-import "./answer.scss";
+import "./Answer.scss";
 
 const containerVariants = {
   hidden: {

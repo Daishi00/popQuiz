@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "./Header/Header";
 import Start from "./Start/Start";
-import "./app.scss";
+import "./App.scss";
 
 const App = () => {
   return (

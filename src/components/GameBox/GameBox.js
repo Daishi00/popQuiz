@@ -4,7 +4,7 @@ import CountryData from "../../api/data.json";
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import Start from "../Start/Start";
 import Answer from "../Answer/Answer";
-import "./gameBox.scss";
+import "./GameBox.scss";
 
 const containerVariants = {
   hidden: {

@@ -1,6 +1,6 @@
 import React from "react";
 import CountUp from "react-countup";
-import "./country.scss";
+import "./Country.scss";
 
 const Country = (props) => {
   return (
