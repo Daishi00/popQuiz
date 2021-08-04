@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import GameBox from "../GameBox/GameBox";
 import { AnimatePresence, motion } from "framer-motion";
 
-import "./Start.scss";
+import "./start.scss";
 
 const containerVariants = {
   hidden: {
