@@ -1,3 +1,5 @@
+@use '../../assets/colors' as c;
+
 .start__container {
   display: flex;
   justify-content: center;
@@ -19,8 +21,8 @@
       width: 20rem;
       height: 5rem;
       font-size: 2.5rem;
-      color: #ffffff;
-      background-color: #242582;
+      color: c.$white;
+      background-color: c.$blue;
       border-radius: 2rem;
       border: none;
     }

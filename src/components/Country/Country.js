@@ -1,8 +1,8 @@
 import React from "react";
 import CountUp from "react-countup";
-import "./Country.scss";
+import "./country.scss";
 
-const Country = props => {
+const Country = (props) => {
   return (
     <div className="country__container">
       <div className="country__flag">

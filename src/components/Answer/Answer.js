@@ -1,40 +1,40 @@
 import React from "react";
 import { motion } from "framer-motion";
 import icon from "../../assets/icon.svg";
-import "./Answer.scss";
+import "./answer.scss";
 
 const containerVariants = {
   hidden: {
-    opacity: 0
+    opacity: 0,
   },
   visible: {
     opacity: 1,
     transition: {
       delay: 1,
-      duration: 1
-    }
-  }
+      duration: 1,
+    },
+  },
 };
 
 const buttonVariants = {
   initial: {
-    opacity: 1
+    opacity: 1,
   },
   hover: {
     backgroundColor: "#33b864",
     transition: {
-      duration: 0.1
-    }
+      duration: 0.1,
+    },
   },
   tap: {
     scale: [1, 1.1, 1],
     transition: {
-      duration: 0.2
-    }
-  }
+      duration: 0.2,
+    },
+  },
 };
 
-const Answer = props => {
+const Answer = (props) => {
   return (
     <motion.div
       className="answer__container"
@@ -48,8 +48,7 @@ const Answer = props => {
       <div className="answer__btn__container">
         <motion.button
           className="answer__btn answer__btn--left"
-          onClick={props.checkAnswerLower}
-          onMouseOver={props.highlightCountry1}
+          onClick={props.checkAnswerLeft}
           variants={buttonVariants}
           initial="initial"
           whileHover="hover"
@@ -60,8 +59,7 @@ const Answer = props => {
         </motion.button>
         <motion.button
           className="answer__btn answer__btn--right"
-          onClick={props.checkAnswerHigher}
-          onMouseOver={props.highlightCountry2}
+          onClick={props.checkAnswerRight}
           variants={buttonVariants}
           initial="initial"
           whileHover="hover"
