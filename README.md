@@ -1,1 +1,1 @@
-[Population Quiz](pop-quiz.netlify.app) made in React.
+[Population Quiz](https://pop-quiz.netlify.app/) made in React.
