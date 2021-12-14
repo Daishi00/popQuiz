@@ -6,10 +6,14 @@ const Country = (props) => {
   return (
     <div className="country__container">
       <div className="country__flag">
-        <img
-          alt={props.id}
-          src={`https://www.countryflags.io/${props.id}/shiny/64.png`}
-        />
+        {props.id && (
+          <img
+            alt={props.id}
+            src={`https://flagcdn.com/${props.id.toLowerCase()}.svg`}
+            width="64"
+            height="48"
+          />
+        )}
       </div>
       <div className="country__name">{props.name}</div>
       <h2>POPULATION</h2>
